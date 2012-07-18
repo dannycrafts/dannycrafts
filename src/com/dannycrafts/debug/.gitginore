@@ -1,0 +1,2 @@
+# This .gitignore makes sure DebugOptions can be edited locally without git concerning about it changes.
+DebugOptions.java
