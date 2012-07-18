@@ -1,0 +1,7 @@
+# In case the bin folder gets created:
+bin
+
+# Eclipse project files:
+.classpath
+.project
+.settings
