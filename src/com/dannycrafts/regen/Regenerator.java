@@ -23,16 +23,16 @@ public class Regenerator
 		}
 	}
 	
-	public static TouchedChunkNote loadTouchedChunk( WorldId world, ChunkCoords chunk ) throws Exception
+	public static TouchedChunkNote loadTouchedChunk( ChunkId id ) throws Exception
 	{
-		Map<ChunkCoords, TouchedChunkNote> worldCollection = chunkNoteCollection.get( world );
+		Map<ChunkCoords, TouchedChunkNote> worldCollection = chunkNoteCollection.get( id.world );
 		if ( worldCollection == null ) return null;
 		
-		TouchedChunkNote touchedChunk = Database.getResource( worldCollection, chunk );
+		TouchedChunkNote touchedChunk = Database.getResource( worldCollection, id.coords );
 		if ( touchedChunk != null ) return touchedChunk;
 			
-		touchedChunk = new TouchedChunkNote( chunk );
-		Database.reviveResource( worldCollection, chunk, touchedChunk );
+		touchedChunk = new TouchedChunkNote( id );
+		Database.reviveResource( worldCollection, id.coords, touchedChunk );
 		return touchedChunk;
 	}
 	

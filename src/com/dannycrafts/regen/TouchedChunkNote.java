@@ -5,9 +5,9 @@ import com.dannycrafts.database.Resource;
 
 public class TouchedChunkNote extends Resource
 {
-	public final ChunkCoords id;
+	public final ChunkId id;
 	
-	protected TouchedChunkNote( ChunkCoords id )
+	protected TouchedChunkNote( ChunkId id )
 	{
 		this.id = id;
 	}
