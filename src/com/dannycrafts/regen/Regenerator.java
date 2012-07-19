@@ -1,5 +1,6 @@
 package com.dannycrafts.regen;
 
+import java.io.*;
 import java.util.*;
 
 import org.bukkit.World;
@@ -17,6 +18,9 @@ public class Regenerator
 		chunkNoteCollection = new HashMap<WorldId, Map<ChunkCoords, TouchedChunkNote>>( Plugin.getBukkitServer().getWorlds().size() );
 		for ( World world : Plugin.getBukkitServer().getWorlds() )
 		{
+			// Create data folders:
+			new File( world.getWorldFolder() + "/touched_chunks" ).mkdir();
+			
 			Map<ChunkCoords, TouchedChunkNote> worldCollection = new HashMap<ChunkCoords, TouchedChunkNote>();
 			chunkNoteCollection.put( new WorldId( world ), worldCollection );
 			Database.registerCollection( worldCollection );
