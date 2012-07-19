@@ -23,6 +23,19 @@ public class Regenerator
 		}
 	}
 	
+	public static TouchedChunkNote loadTouchedChunk( WorldId world, ChunkCoords chunk ) throws Exception
+	{
+		Map<ChunkCoords, TouchedChunkNote> worldCollection = chunkNoteCollection.get( world );
+		if ( worldCollection == null ) return null;
+		
+		TouchedChunkNote touchedChunk = Database.getResource( worldCollection, chunk );
+		if ( touchedChunk != null ) return touchedChunk;
+			
+		touchedChunk = new TouchedChunkNote( chunk );
+		Database.reviveResource( worldCollection, chunk, touchedChunk );
+		return touchedChunk;
+	}
+	
 	public static void uninit()
 	{
 		chunkNoteCollection = null;
