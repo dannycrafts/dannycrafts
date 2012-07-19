@@ -7,6 +7,7 @@ import org.bukkit.command.*;
 import org.bukkit.plugin.PluginManager;
 
 import com.dannycrafts.database.Database;
+import com.dannycrafts.regen.Regenerator;
 import com.dannycrafts.snapshot.Snapshots;
 
 public class Plugin extends org.bukkit.plugin.java.JavaPlugin
@@ -31,6 +32,7 @@ public class Plugin extends org.bukkit.plugin.java.JavaPlugin
 	@Override
 	public void onDisable()
 	{
+		Regenerator.uninit();
 		Snapshots.uninit();
 		Database.uninit();
 		
@@ -58,6 +60,7 @@ public class Plugin extends org.bukkit.plugin.java.JavaPlugin
 		
 		Database.init();
 		Snapshots.init();
+		Regenerator.init();
 		
 		PluginManager pm = getServer().getPluginManager();
 		pm.registerEvents( new Listener(), this );
