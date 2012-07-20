@@ -51,6 +51,14 @@ public class Regenerator
 		return Database.resourceExists( touchedChunk );
 	}
 	
+	public static void touchChunk( ChunkId id ) throws Exception
+	{
+		if ( !touchedChunkExists( id ) )
+		{
+			spawnTouchedChunk( id );
+		}
+	}
+	
 	public static void uninit()
 	{
 		chunkNoteCollection = null;

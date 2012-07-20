@@ -3,14 +3,45 @@ package com.dannycrafts.plugin;
 import java.io.*;
 
 import org.bukkit.event.*;
+import org.bukkit.event.block.*;
 import org.bukkit.event.world.*;
 
-import com.dannycrafts.database.Database;
-import com.dannycrafts.debug.Debug;
-import com.dannycrafts.snapshot.ChunkSnapshot;
+import com.dannycrafts.*;
+import com.dannycrafts.database.*;
+import com.dannycrafts.debug.*;
+import com.dannycrafts.regen.*;
+import com.dannycrafts.snapshot.*;
 
 public class Listener implements org.bukkit.event.Listener
 {
+	@EventHandler( priority = EventPriority.LOWEST, ignoreCancelled = true )
+	public void onBlockBreak( BlockBreakEvent event )
+	{
+		try
+		{
+			Regenerator.touchChunk( new ChunkId( new WorldId( event.getBlock().getWorld() ), new ChunkCoords( event.getBlock().getChunk() ) ) );
+		
+			Debug.debug( "Touched chunk: (" + event.getBlock().getChunk().getX() + ", " + event.getBlock().getChunk().getZ() );
+		}
+		catch ( Exception e )
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	@EventHandler( priority = EventPriority.LOWEST, ignoreCancelled = true )
+	public void onBlockPlace( BlockPlaceEvent event )
+	{
+		try
+		{
+			Regenerator.touchChunk( new ChunkId( new WorldId( event.getBlock().getWorld() ), new ChunkCoords( event.getBlock().getChunk() ) ) );
+		}
+		catch ( Exception e )
+		{
+			e.printStackTrace();
+		}
+	}
+	
 	@EventHandler
 	public void onChunkPopulate( ChunkPopulateEvent event )
 	{
