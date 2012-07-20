@@ -87,6 +87,17 @@ public class Database
 		}
 	}
 	
+	public static <I, R extends Resource> void spawnResource( Map<I, R> dataCollection, I id, R resource ) throws Exception
+	{
+		resource.create();
+		resource.acquire();
+		
+		synchronized ( dataCollection )
+		{
+			dataCollection.put( id, resource );
+		}
+	}
+	
 	public static void uninit()
 	{
 		try
