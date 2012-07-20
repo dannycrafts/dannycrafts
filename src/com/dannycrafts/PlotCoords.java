@@ -22,6 +22,20 @@ public class PlotCoords
 	}
 	
 	@Override
+	public boolean equals( Object other )
+	{
+		if ( other instanceof PlotCoords == false ) return false;
+		PlotCoords _other = (PlotCoords)other;
+		return this.x == _other.x && this.y == _other.y && this.z == _other.z;
+	}
+
+	@Override
+	public int hashCode()
+	{
+		return x ^ y ^ z;
+	}
+	
+	@Override
 	public String toString()
 	{
 		return x + "," + y + "," + z;
