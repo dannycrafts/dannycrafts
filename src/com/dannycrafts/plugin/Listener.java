@@ -6,6 +6,7 @@ import org.bukkit.event.*;
 import org.bukkit.event.world.*;
 
 import com.dannycrafts.database.Database;
+import com.dannycrafts.debug.Debug;
 import com.dannycrafts.snapshot.ChunkSnapshot;
 
 public class Listener implements org.bukkit.event.Listener
@@ -19,7 +20,8 @@ public class Listener implements org.bukkit.event.Listener
 			
 			cs.save( event.getWorld() );
 			
-			Plugin.announce( "Wrote chunk (" + event.getChunk().getX() + "," + event.getChunk().getZ() + ")." );
+			if ( Debug.chunkSnapshots() )
+				Debug.debug( "Wrote chunk (" + event.getChunk().getX() + "," + event.getChunk().getZ() + ")." );
 		}
 		catch ( Exception e )
 		{

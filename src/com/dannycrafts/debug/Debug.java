@@ -23,4 +23,9 @@ public class Debug
 	{
 		return enabled( DebugOptions.garbageCollector );
 	}
+	
+	public static boolean chunkSnapshots()
+	{
+		return enabled( DebugOptions.chunkSnapshots );
+	}
 }
