@@ -11,11 +11,11 @@ public abstract class WorldResource extends Resource
 		this.world = world;
 	}
 	
-	protected void load() { load( world ); }
+	protected void load() throws Exception { load( world ); }
 	
-	protected abstract void load( WorldId world );
+	protected abstract void load( WorldId world ) throws Exception;
 	
-	protected void save() { save( world ); }
+	protected void save() throws Exception { save( world ); }
 	
-	protected abstract void save( WorldId world );
+	protected abstract void save( WorldId world ) throws Exception;
 }
