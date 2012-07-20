@@ -21,11 +21,18 @@ public class WorldId
 		this.id = worlds.indexOf( worldName );
 	}
 	
+	@Override
 	public boolean equals( Object other )
 	{
 		if ( other instanceof WorldId == false ) return false;
 		WorldId _other = (WorldId)other;
 		return this.id == _other.id;
+	}
+
+	@Override
+	public int hashCode()
+	{
+		return id;
 	}
 	
 	public String getName()
@@ -46,6 +53,12 @@ public class WorldId
 	public static void loadWorld( org.bukkit.World world )
 	{
 		worlds.add( world.getName() );
+	}
+	
+	@Override
+	public String toString()
+	{
+		return getName();
 	}
 	
 	public static void unloadWorlds()

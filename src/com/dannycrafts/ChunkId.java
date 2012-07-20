@@ -15,4 +15,24 @@ public class ChunkId
 	{
 		this( new WorldId( chunk.getWorld() ), new ChunkCoords( chunk.getX(), chunk.getZ() ) );
 	}
+	
+	@Override
+	public boolean equals( Object other )
+	{
+		if ( other instanceof ChunkId == false ) return false;
+		ChunkId _other = (ChunkId)other;
+		return this.world.equals( world ) && this.coords.equals( _other.coords );
+	}
+
+	@Override
+	public int hashCode()
+	{
+		return world.hashCode() ^ coords.hashCode();
+	}
+	
+	@Override
+	public String toString()
+	{
+		return world.toString() + ": " + coords.toString();
+	}
 }
