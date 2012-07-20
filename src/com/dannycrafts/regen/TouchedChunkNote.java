@@ -19,8 +19,18 @@ public class TouchedChunkNote extends WorldResource
 	@Override
 	protected void create( WorldId world ) throws Exception
 	{
-		File file = new File( world.getBukkitWorld().getWorldFolder() + "/touched_chunks/" + id.x + "," + id.y );
-		file.createNewFile();
+		dataFile( world ).createNewFile();
+	}
+	
+	private File dataFile( WorldId world )
+	{
+		return new File( world.getBukkitWorld().getWorldFolder() + "/touched_chunks/" + id.x + "," + id.y );
+	}
+
+	@Override
+	protected boolean exists( WorldId world ) throws Exception
+	{
+		return dataFile( world ).exists();
 	}
 	
 	@Override

@@ -4,6 +4,7 @@ import java.io.*;
 
 import com.dannycrafts.*;
 import com.dannycrafts.database.*;
+import com.dannycrafts.region.Regions;
 
 public class ChunkSnapshotData extends Resource
 {
@@ -13,6 +14,12 @@ public class ChunkSnapshotData extends Resource
 	protected ChunkSnapshotData( ChunkId id )
 	{
 		this.id = id;
+	}
+	
+	@Override
+	protected boolean exists() throws Exception
+	{
+		return new File( id.world.getBukkitWorld().getWorldFolder() + "/snapshots/" + id.coords.x + "," + id.coords.y ).exists();
 	}
 
 	@Override

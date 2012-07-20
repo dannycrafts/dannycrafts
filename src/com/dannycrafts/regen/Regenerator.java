@@ -13,6 +13,17 @@ public class Regenerator
 {
 	private static Map<WorldId, Map<ChunkCoords, TouchedChunkNote>> chunkNoteCollection;
 	
+	public static TouchedChunkNote spawnTouchedChunk( ChunkId id ) throws Exception
+	{
+		Map<ChunkCoords, TouchedChunkNote> worldCollection = chunkNoteCollection.get( id.world );
+		
+		// If already loaded, it exists
+		TouchedChunkNote touchedChunk = new TouchedChunkNote( id );
+		Database.spawnResource( worldCollection, id.coords, touchedChunk );
+		
+		return touchedChunk;
+	}
+	
 	public static void init()
 	{
 		chunkNoteCollection = new HashMap<WorldId, Map<ChunkCoords, TouchedChunkNote>>( Plugin.getBukkitServer().getWorlds().size() );
@@ -28,17 +39,16 @@ public class Regenerator
 		Database.registerWorldCollections( chunkNoteCollection );
 	}
 	
-	public static TouchedChunkNote loadTouchedChunk( ChunkId id ) throws Exception
+	public static boolean touchedChunkExists( ChunkId id ) throws Exception
 	{
 		Map<ChunkCoords, TouchedChunkNote> worldCollection = chunkNoteCollection.get( id.world );
-		if ( worldCollection == null ) return null;
+		if ( worldCollection == null ) return false;
 		
-		TouchedChunkNote touchedChunk = Database.getResource( worldCollection, id.coords );
-		if ( touchedChunk != null ) return touchedChunk;
+		// If already loaded, it exists
+		if ( Database.resourceIsLoaded( worldCollection, id.coords ) == true ) return true;
 			
-		touchedChunk = new TouchedChunkNote( id );
-		Database.reviveResource( worldCollection, id.coords, touchedChunk );
-		return touchedChunk;
+		TouchedChunkNote touchedChunk = new TouchedChunkNote( id );
+		return Database.resourceExists( touchedChunk );
 	}
 	
 	public static void uninit()
