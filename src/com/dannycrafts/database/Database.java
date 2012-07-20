@@ -11,7 +11,7 @@ public class Database
 	
 	private static GarbageCollector garbageCollector;
 	
-	private static Map<WorldId, WorldDatabase> worldDatabases;
+	protected static Map<WorldId, WorldDatabase> worldDatabases;
 	
 	public static <I, R extends Resource> void registerCollection( Map<I, R> collection )
 	{
