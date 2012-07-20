@@ -9,6 +9,8 @@ public class WorldId
 {
 	private final UUID uid;
 	
+	private static List<String> worlds = new ArrayList<String>();
+	
 	public WorldId( org.bukkit.World world )
 	{
 		this.uid = world.getUID();
@@ -32,5 +34,10 @@ public class WorldId
 	public File getDataFolder()
 	{
 		return getBukkitWorld().getWorldFolder();
+	}
+	
+	private static void loadWorld( org.bukkit.World world )
+	{
+		worlds.add( world.getName() );
 	}
 }
