@@ -36,8 +36,13 @@ public class WorldId
 		return getBukkitWorld().getWorldFolder();
 	}
 	
-	protected static void loadWorld( org.bukkit.World world )
+	public static void loadWorld( org.bukkit.World world )
 	{
 		worlds.add( world.getName() );
+	}
+	
+	public static void unloadWorlds()
+	{
+		worlds.clear();
 	}
 }

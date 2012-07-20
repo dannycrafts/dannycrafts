@@ -38,6 +38,8 @@ public class Plugin extends org.bukkit.plugin.java.JavaPlugin
 		Snapshots.uninit();
 		Database.uninit();
 		
+		WorldId.unloadWorlds();
+		
 		logger = null;
 		bukkitServer = null;
 		pluginFolder = null;
