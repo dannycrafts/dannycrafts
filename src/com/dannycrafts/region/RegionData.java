@@ -23,6 +23,12 @@ public class RegionData extends Resource
 	{
 		this.id = id;
 	}
+	
+	@Override
+	protected boolean exists() throws Exception
+	{
+		return new File( Regions.getDataFolder() + "/" + id ).exists();
+	}
 
 	@Override
 	protected void load() throws Exception
