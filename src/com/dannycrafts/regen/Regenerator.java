@@ -13,6 +13,17 @@ public class Regenerator
 {
 	private static Map<WorldId, Map<ChunkCoords, TouchedChunkNote>> chunkNoteCollection;
 	
+	public static TouchedChunkNote spawnTouchedChunk( ChunkId id )
+	{
+		Map<ChunkCoords, TouchedChunkNote> worldCollection = chunkNoteCollection.get( id.world );
+		
+		// If already loaded, it exists
+		TouchedChunkNote touchedChunk = new TouchedChunkNote( id );
+		Database.spawnResource( worldCollection, id.coords, touchedChunk );
+		
+		return touchedChunk;
+	}
+	
 	public static void init()
 	{
 		chunkNoteCollection = new HashMap<WorldId, Map<ChunkCoords, TouchedChunkNote>>( Plugin.getBukkitServer().getWorlds().size() );
