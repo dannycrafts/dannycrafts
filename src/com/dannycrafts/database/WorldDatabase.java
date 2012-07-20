@@ -4,7 +4,7 @@ import java.util.*;
 
 public class WorldDatabase
 {
-	protected List<Map<?, ? extends WorldResource>> dataCollections;
+	protected List<Map<?, ? extends Resource>> dataCollections;
 	
 	public <I, R extends WorldResource> void registerCollection( Map<I, R> collection )
 	{
