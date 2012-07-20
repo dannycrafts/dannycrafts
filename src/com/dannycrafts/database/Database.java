@@ -13,7 +13,7 @@ public class Database
 	
 	protected static Map<WorldId, WorldDatabase> worldDatabases;
 	
-	public static <I, R extends Resource> void createResource( Map<I, R> dataCollection, R resource )
+	public static <I, R extends Resource> void createResource( Map<I, R> dataCollection, I id, R resource ) throws Exception
 	{
 		
 	}
