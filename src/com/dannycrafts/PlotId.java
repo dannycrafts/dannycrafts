@@ -11,6 +11,7 @@ public class PlotId
 		this.coords = coords;
 	}
 	
+	@Override
 	public boolean equals( Object other )
 	{
 		if ( other instanceof PlotId == false ) return false;
@@ -18,6 +19,7 @@ public class PlotId
 		return this.world.equals( _other.world ) && this.coords.equals( _other.coords );
 	}
 	
+	@Override
 	public int hashCode()
 	{
 		return coords.hashCode();
