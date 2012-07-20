@@ -26,6 +26,12 @@ public class Database
 		worldDatabases.get( world ).registerCollection( collection );
 	}
 	
+	public static <I, R extends WorldResource> void registerWorldCollections( Map<WorldId, Map<I, R>> collectionList )
+	{
+		for ( Map.Entry<WorldId, Map<I, R>> entry : collectionList.entrySet() )
+			registerWorldCollection( entry.getKey(), entry.getValue() );
+	}
+	
 	public static void saveAllResources()
 	{
 		garbageCollector.saveAllResources();
