@@ -4,7 +4,7 @@ import java.util.*;
 
 public class WorldDatabase
 {
-	protected List<Map<?, ? extends Resource>> dataCollections;
+	protected List<Map<?, ? extends Resource>> dataCollections = new ArrayList<Map<?, ? extends Resource>>();
 	
 	public static <I, R extends Resource> void createResource( Map<I, R> dataCollection, I id, R resource ) throws Exception
 	{
