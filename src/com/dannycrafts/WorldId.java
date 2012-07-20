@@ -28,6 +28,11 @@ public class WorldId
 		return this.id == _other.id;
 	}
 	
+	public int hashCode()
+	{
+		return id;
+	}
+	
 	public String getName()
 	{
 		return worlds.get( id );
