@@ -1,34 +1,34 @@
 package com.dannycrafts;
 
 import java.io.*;
-import java.util.UUID;
+import java.util.*;
 
 import com.dannycrafts.plugin.Plugin;
 
 public class WorldId
 {
-	private final UUID uid;
+	private final int id;
 	
 	private static List<String> worlds = new ArrayList<String>();
 	
 	public WorldId( org.bukkit.World world )
 	{
-		this.uid = world.getUID();
+		this( world.getName() );
 	}
 	
 	public WorldId( String worldName )
 	{
-		this( Plugin.getBukkitServer().getWorld( worldName ) );
+		this.id = worlds.indexOf( worldName );
 	}
 	
 	public String getName()
 	{
-		return getBukkitWorld().getName();
+		return worlds.get( id );
 	}
 	
 	public org.bukkit.World getBukkitWorld()
 	{
-		return Plugin.getBukkitServer().getWorld( uid );
+		return Plugin.getBukkitServer().getWorld( getName() );
 	}
 	
 	public File getDataFolder()
@@ -36,7 +36,7 @@ public class WorldId
 		return getBukkitWorld().getWorldFolder();
 	}
 	
-	private static void loadWorld( org.bukkit.World world )
+	protected static void loadWorld( org.bukkit.World world )
 	{
 		worlds.add( world.getName() );
 	}
