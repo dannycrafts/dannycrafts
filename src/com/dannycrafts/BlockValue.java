@@ -25,6 +25,17 @@ public class BlockValue {
 		
 		return this.id == _other.id && this.data == _other.data;
 	}
+	@Override
+	public int hashCode()
+	{
+		return id ^ data;
+	}
+	
+	@Override
+	public String toString()
+	{
+		return id + ":" + data;
+	}
 	
 	public int getBlockId()
 	{
