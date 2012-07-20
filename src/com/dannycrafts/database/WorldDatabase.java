@@ -4,9 +4,9 @@ import java.util.*;
 
 public class WorldDatabase
 {
-	protected List<Map<?, ? extends Resource>> dataCollections;
+	protected List<Map<?, ? extends WorldResource>> dataCollections;
 	
-	public <I, R extends Resource> void registerCollection( Map<I, R> collection )
+	public <I, R extends WorldResource> void registerCollection( Map<I, R> collection )
 	{
 		synchronized ( dataCollections )
 		{
@@ -14,7 +14,7 @@ public class WorldDatabase
 		}
 	}
 	
-	public static <K, R extends Resource> R getResource( Map<K, R> dataCollection, K id )
+	public static <K, R extends WorldResource> R getResource( Map<K, R> dataCollection, K id )
 	{
 		R resource;
 		synchronized ( dataCollection )
@@ -28,7 +28,7 @@ public class WorldDatabase
 		return resource;
 	}
 
-	public static <K, R extends Resource> void reviveResource( Map<K, R> dataCollection, K id, R resource ) throws Exception
+	public static <K, R extends WorldResource> void reviveResource( Map<K, R> dataCollection, K id, R resource ) throws Exception
 	{
 		resource.load();
 		resource.acquire();

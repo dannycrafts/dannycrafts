@@ -21,7 +21,7 @@ public class Database
 		}
 	}
 	
-	public static <I, R extends Resource> void registerWorldCollection( WorldId world, Map<I, R> collection )
+	public static <I, R extends WorldResource> void registerWorldCollection( WorldId world, Map<I, R> collection )
 	{
 		worldDatabases.get( world ).registerCollection( collection );
 	}
