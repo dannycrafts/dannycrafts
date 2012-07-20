@@ -17,12 +17,15 @@ public class TouchedChunkNote extends WorldResource
 	}
 	
 	@Override
-	protected void load( WorldId world ) throws Exception {}
-
-	@Override
-	protected void save( WorldId world ) throws Exception
+	protected void create( WorldId world ) throws Exception
 	{
 		File file = new File( world.getBukkitWorld().getWorldFolder() + "/touched_chunks/" + id.x + "," + id.y );
 		file.createNewFile();
 	}
+	
+	@Override
+	protected void load( WorldId world ) throws Exception {}
+
+	@Override
+	protected void save( WorldId world ) throws Exception {}
 }
