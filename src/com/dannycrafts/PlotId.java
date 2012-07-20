@@ -24,4 +24,10 @@ public class PlotId
 	{
 		return world.hashCode() ^ coords.hashCode();
 	}
+	
+	@Override
+	public String toString()
+	{
+		return world.toString() + ": " + coords.toString();
+	}
 }
