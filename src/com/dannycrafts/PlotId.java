@@ -22,6 +22,6 @@ public class PlotId
 	@Override
 	public int hashCode()
 	{
-		return coords.hashCode();
+		return world.hashCode() ^ coords.hashCode();
 	}
 }
