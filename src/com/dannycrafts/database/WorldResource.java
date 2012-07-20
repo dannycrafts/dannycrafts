@@ -17,6 +17,11 @@ public abstract class WorldResource extends Resource
 	protected abstract void create( WorldId world ) throws Exception;
 	
 	@Override
+	protected boolean exists() throws Exception { return exists( world ); }
+	
+	protected abstract boolean exists( WorldId world ) throws Exception;
+	
+	@Override
 	protected void load() throws Exception { load( world ); }
 	
 	protected abstract void load( WorldId world ) throws Exception;
