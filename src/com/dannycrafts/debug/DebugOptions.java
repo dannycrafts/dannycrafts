@@ -18,4 +18,8 @@ public class DebugOptions
 	// Informs you about resources that get saved or released by the garbage collector.
 	// Recommended when investigating memory leaks.
 	protected static final boolean garbageCollector = false;
+
+	// Informs you about chunks snapshots being written.
+	// Recommended even when not debugging.
+	protected static final boolean chunkSnapshots = true;
 }
