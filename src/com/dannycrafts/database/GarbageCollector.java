@@ -106,6 +106,9 @@ public class GarbageCollector
 		private void cleanCycle()
 		{
 			cleanCycle( Database.dataCollections );
+			
+			for ( WorldDatabase worldDatabase : Database.worldDatabases.values() )
+				cleanCycle( worldDatabase.dataCollections );
 		}
 		
 		private void cleanCycle( List<Map<?, ? extends Resource>> dataCollections )
@@ -154,6 +157,9 @@ public class GarbageCollector
 		private void saveCycle()
 		{
 			saveCycle( Database.dataCollections );
+			
+			for ( WorldDatabase worldDatabase : Database.worldDatabases.values() )
+				cleanCycle( worldDatabase.dataCollections );
 		}
 		
 		private void saveCycle( List<Map<?, ? extends Resource>> dataCollections )
