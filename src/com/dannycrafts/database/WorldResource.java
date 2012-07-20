@@ -29,5 +29,5 @@ public abstract class WorldResource extends Resource
 	@Override
 	protected void save() throws Exception { save( world ); }
 	
-	protected abstract void save( WorldId world ) throws Exception;
+	protected void save( WorldId world ) throws Exception {}
 }
