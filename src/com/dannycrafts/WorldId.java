@@ -21,13 +21,15 @@ public class WorldId
 		this.id = worlds.indexOf( worldName );
 	}
 	
+	@Override
 	public boolean equals( Object other )
 	{
 		if ( other instanceof WorldId == false ) return false;
 		WorldId _other = (WorldId)other;
 		return this.id == _other.id;
 	}
-	
+
+	@Override
 	public int hashCode()
 	{
 		return id;
