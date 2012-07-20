@@ -21,6 +21,13 @@ public class WorldId
 		this.id = worlds.indexOf( worldName );
 	}
 	
+	public boolean equals( Object other )
+	{
+		if ( other instanceof WorldId == false ) return false;
+		WorldId _other = (WorldId)other;
+		return this.id == _other.id;
+	}
+	
 	public String getName()
 	{
 		return worlds.get( id );
