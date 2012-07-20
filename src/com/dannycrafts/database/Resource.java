@@ -20,6 +20,8 @@ public abstract class Resource
 		}
 	}
 	
+	protected abstract void create() throws Exception;
+	
 	protected boolean isOld()
 	{
 		int ucCopy; long isCopy;
