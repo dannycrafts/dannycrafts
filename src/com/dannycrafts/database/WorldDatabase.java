@@ -13,4 +13,18 @@ public class WorldDatabase
 			dataCollections.add( collection );
 		}
 	}
+	
+	public static <K, R extends Resource> R getResource( Map<K, R> dataCollection, K id )
+	{
+		R resource;
+		synchronized ( dataCollection )
+		{
+			resource = dataCollection.get( id );
+			
+			if ( resource != null )
+				resource.acquire();
+		}
+		
+		return resource;
+	}
 }
