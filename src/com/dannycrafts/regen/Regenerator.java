@@ -13,7 +13,7 @@ public class Regenerator
 {
 	private static Map<WorldId, Map<ChunkCoords, TouchedChunkNote>> chunkNoteCollection;
 	
-	public static TouchedChunkNote spawnTouchedChunk( ChunkId id )
+	public static TouchedChunkNote spawnTouchedChunk( ChunkId id ) throws Exception
 	{
 		Map<ChunkCoords, TouchedChunkNote> worldCollection = chunkNoteCollection.get( id.world );
 		
