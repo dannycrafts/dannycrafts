@@ -10,4 +10,9 @@ public class ChunkCoords
 		this.x = x;
 		this.y = y;
 	}
+	
+	public ChunkCoords( org.bukkit.Chunk chunk )
+	{
+		this( chunk.getX(), chunk.getZ() );
+	}
 }
