@@ -13,7 +13,7 @@ public class PlotId
 	
 	public boolean equals( Object other )
 	{
-		if ( other instanceof WorldId == false ) return false;
+		if ( other instanceof PlotId == false ) return false;
 		PlotId _other = (PlotId)other;
 		return this.world.equals( _other.world ) && this.coords.equals( _other.coords );
 	}
