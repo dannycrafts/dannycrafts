@@ -3,9 +3,11 @@ package com.dannycrafts.plugin;
 import java.io.*;
 import java.util.logging.Logger;
 
+import org.bukkit.World;
 import org.bukkit.command.*;
 import org.bukkit.plugin.PluginManager;
 
+import com.dannycrafts.*;
 import com.dannycrafts.database.Database;
 import com.dannycrafts.regen.Regenerator;
 import com.dannycrafts.snapshot.Snapshots;
@@ -55,6 +57,10 @@ public class Plugin extends org.bukkit.plugin.java.JavaPlugin
 		logger = this.getLogger();
 		bukkitServer = this.getServer();
 		pluginFolder = this.getDataFolder();
+		
+		// Load bukkit worlds:
+		for ( World world : this.getServer().getWorlds() )
+			WorldId.loadWorld( world );
 		
 		getPluginFolder().mkdir();
 		
