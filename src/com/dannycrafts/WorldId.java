@@ -1,5 +1,6 @@
 package com.dannycrafts;
 
+import java.io.*;
 import java.util.UUID;
 
 import com.dannycrafts.plugin.Plugin;
@@ -28,4 +29,8 @@ public class WorldId
 		return Plugin.getBukkitServer().getWorld( uid );
 	}
 	
+	public File getDataFolder()
+	{
+		return getBukkitWorld().getWorldFolder();
+	}
 }

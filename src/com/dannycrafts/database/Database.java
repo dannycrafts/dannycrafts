@@ -16,11 +16,6 @@ public class Database
 	public static <I, R extends Resource> void createResource( Map<I, R> dataCollection, I id, R resource ) throws Exception
 	{
 		resource.create();
-		
-		synchronized ( dataCollection )
-		{
-			dataCollection.put( id, resource );
-		}
 	}
 	
 	public static <I, R extends Resource> void registerCollection( Map<I, R> collection )
@@ -84,6 +79,19 @@ public class Database
 		synchronized ( dataCollection )
 		{
 			dataCollection.put( id, resource );
+		}
+	}
+	
+	public static <K, R extends Resource> boolean resourceExists( R resource ) throws Exception
+	{
+		return resource.exists();
+	}
+	
+	public static <K, R extends Resource> boolean resourceIsLoaded( Map<K, R> dataCollection, K id )
+	{
+		synchronized ( dataCollection )
+		{
+			return dataCollection.containsKey( id );
 		}
 	}
 	

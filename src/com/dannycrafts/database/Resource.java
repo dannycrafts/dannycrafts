@@ -25,6 +25,8 @@ public abstract class Resource
 		save();
 	}
 	
+	protected abstract boolean exists() throws Exception;
+	
 	protected boolean isOld()
 	{
 		int ucCopy; long isCopy;

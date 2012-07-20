@@ -5,21 +5,38 @@ import java.io.*;
 import com.dannycrafts.*;
 import com.dannycrafts.database.*;
 
-public class ChunkSnapshotData extends Resource
+public class ChunkSnapshotData extends WorldResource
 {
-	protected ChunkId id;
+	protected ChunkCoords id;
 	protected ChunkSnapshot data;
 	
 	protected ChunkSnapshotData( ChunkId id )
 	{
-		this.id = id;
+		super( id.world );
+		
+		this.id = id.coords;
+	}
+	
+	@Override
+	protected void create( WorldId world ) throws Exception
+	{
+		ChunkSnapshot snapshot = new ChunkSnapshot( world.getBukkitWorld(), id );
+		FileOutputStream fos = new FileOutputStream( new File( world.getDataFolder() + "/snapshots/" + id.x + "," + id.y ) );
+		snapshot.writeTo( fos );
+		fos.close();
+	}
+	
+	@Override
+	protected boolean exists( WorldId world ) throws Exception
+	{
+		return new File( world.getDataFolder() + "/snapshots/" + id.x + "," + id.y ).exists();
 	}
 
 	@Override
-	protected void load() throws Exception
+	protected void load( WorldId world ) throws Exception
 	{
-		ChunkSnapshot snapshot = new ChunkSnapshot( id.world.getBukkitWorld(), id.coords );
-		FileInputStream fis = new FileInputStream( new File( id.world.getBukkitWorld().getWorldFolder() + "/snapshots/" + id.coords.x + "," + id.coords.y ) );
+		ChunkSnapshot snapshot = new ChunkSnapshot( world.getBukkitWorld(), id );
+		FileInputStream fis = new FileInputStream( new File( world.getDataFolder() + "/snapshots/" + id.x + "," + id.y ) );
 		snapshot.readFrom( fis );
 		fis.close();
 		
