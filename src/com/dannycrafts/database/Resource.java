@@ -20,7 +20,10 @@ public abstract class Resource
 		}
 	}
 	
-	protected abstract void create() throws Exception;
+	protected void create() throws Exception
+	{
+		save();
+	}
 	
 	protected boolean isOld()
 	{
