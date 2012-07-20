@@ -12,6 +12,11 @@ public abstract class WorldResource extends Resource
 	}
 	
 	@Override
+	protected void create() throws Exception { create( world ); }
+	
+	protected abstract void create( WorldId world ) throws Exception;
+	
+	@Override
 	protected void load() throws Exception { load( world ); }
 	
 	protected abstract void load( WorldId world ) throws Exception;

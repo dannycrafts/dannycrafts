@@ -13,6 +13,16 @@ public class Database
 	
 	protected static Map<WorldId, WorldDatabase> worldDatabases;
 	
+	public static <I, R extends Resource> void createResource( Map<I, R> dataCollection, I id, R resource ) throws Exception
+	{
+		resource.create();
+		
+		synchronized ( dataCollection )
+		{
+			dataCollection.put( id, resource );
+		}
+	}
+	
 	public static <I, R extends Resource> void registerCollection( Map<I, R> collection )
 	{
 		synchronized ( dataCollections )
@@ -69,6 +79,17 @@ public class Database
 	public static <K, R extends Resource> void reviveResource( Map<K, R> dataCollection, K id, R resource ) throws Exception
 	{
 		resource.load();
+		resource.acquire();
+		
+		synchronized ( dataCollection )
+		{
+			dataCollection.put( id, resource );
+		}
+	}
+	
+	public static <I, R extends Resource> void spawnResource( Map<I, R> dataCollection, I id, R resource ) throws Exception
+	{
+		resource.create();
 		resource.acquire();
 		
 		synchronized ( dataCollection )
