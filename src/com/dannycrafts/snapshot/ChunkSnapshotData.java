@@ -18,6 +18,15 @@ public class ChunkSnapshotData extends WorldResource
 	}
 	
 	@Override
+	protected void create( WorldId world ) throws Exception
+	{
+		ChunkSnapshot snapshot = new ChunkSnapshot( world.getBukkitWorld(), id );
+		FileOutputStream fos = new FileOutputStream( new File( world.getDataFolder() + "/snapshots/" + id.x + "," + id.y ) );
+		snapshot.writeTo( fos );
+		fos.close();
+	}
+	
+	@Override
 	protected boolean exists( WorldId world ) throws Exception
 	{
 		return new File( world.getDataFolder() + "/snapshots/" + id.x + "," + id.y ).exists();
