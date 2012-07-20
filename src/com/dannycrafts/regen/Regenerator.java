@@ -41,6 +41,11 @@ public class Regenerator
 		return touchedChunk;
 	}
 	
+	public static void touchChunk( ChunkId id )
+	{
+		
+	}
+	
 	public static void uninit()
 	{
 		chunkNoteCollection = null;
