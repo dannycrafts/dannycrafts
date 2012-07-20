@@ -3,25 +3,26 @@ package com.dannycrafts.regen;
 import java.io.File;
 
 import com.dannycrafts.*;
-import com.dannycrafts.database.Resource;
-import com.dannycrafts.plugin.Plugin;
+import com.dannycrafts.database.*;
 
-public class TouchedChunkNote extends Resource
+public class TouchedChunkNote extends WorldResource
 {
-	public final ChunkId id;
+	public final ChunkCoords id;
 	
 	protected TouchedChunkNote( ChunkId id )
 	{
-		this.id = id;
+		super( id.world );
+		
+		this.id = id.coords;
 	}
 	
 	@Override
-	protected void load() throws Exception {}
+	protected void load( WorldId world ) throws Exception {}
 
 	@Override
-	protected void save() throws Exception
+	protected void save( WorldId world ) throws Exception
 	{
-		File file = new File( id.world.getBukkitWorld().getWorldFolder() + "/touched_chunks/" + id.coords.x + "," + id.coords.y );
+		File file = new File( world.getBukkitWorld().getWorldFolder() + "/touched_chunks/" + id.x + "," + id.y );
 		file.createNewFile();
 	}
 }

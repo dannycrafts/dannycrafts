@@ -23,8 +23,9 @@ public class Regenerator
 			
 			Map<ChunkCoords, TouchedChunkNote> worldCollection = new HashMap<ChunkCoords, TouchedChunkNote>();
 			chunkNoteCollection.put( new WorldId( world ), worldCollection );
-			Database.registerCollection( worldCollection );
 		}
+		
+		Database.registerWorldCollections( chunkNoteCollection );
 	}
 	
 	public static TouchedChunkNote loadTouchedChunk( ChunkId id ) throws Exception
