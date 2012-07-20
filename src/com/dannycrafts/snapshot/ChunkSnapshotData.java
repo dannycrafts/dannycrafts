@@ -20,14 +20,14 @@ public class ChunkSnapshotData extends WorldResource
 	@Override
 	protected boolean exists( WorldId world ) throws Exception
 	{
-		return new File( world.getBukkitWorld().getWorldFolder() + "/snapshots/" + id.x + "," + id.y ).exists();
+		return new File( world.getDataFolder() + "/snapshots/" + id.x + "," + id.y ).exists();
 	}
 
 	@Override
 	protected void load( WorldId world ) throws Exception
 	{
 		ChunkSnapshot snapshot = new ChunkSnapshot( world.getBukkitWorld(), id );
-		FileInputStream fis = new FileInputStream( new File( world.getBukkitWorld().getWorldFolder() + "/snapshots/" + id.x + "," + id.y ) );
+		FileInputStream fis = new FileInputStream( new File( world.getDataFolder() + "/snapshots/" + id.x + "," + id.y ) );
 		snapshot.readFrom( fis );
 		fis.close();
 		
