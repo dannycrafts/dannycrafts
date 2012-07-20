@@ -46,46 +46,7 @@ public class GarbageCollector
 		{
 			while ( this.workerFlag == true )
 			{
-				// Do cleaning cycle:
-				List<Map<?, ? extends Resource>> dataCollectionsCopy;
-				synchronized ( Database.dataCollections )
-				{
-					dataCollectionsCopy = new ArrayList<Map<?, ? extends Resource>>( Database.dataCollections.size() );
-					dataCollectionsCopy.addAll( Database.dataCollections );
-				}
-				for ( Map<?, ? extends Resource> dataCollection : dataCollectionsCopy )
-				{
-					synchronized ( dataCollection )
-					{
-						for ( Iterator<? extends Resource> i = dataCollection.values().iterator(); i.hasNext(); )
-						{
-							Resource resource = i.next();
-							
-							// Check if not used anymore:
-							if ( resource.isOld() )
-							{
-								// Remove from collection:
-								i.remove();
-								
-								// Save if changed:
-								if ( resource.hasChanged == true )
-								{
-									try
-									{
-										resource.save();
-									}
-									catch (Exception e)
-									{
-										Plugin.report( "Unable to save resource " + resource + "." );
-										e.printStackTrace();
-									}
-								}
-								
-								if ( Debug.garbageCollector() ) Debug.debug( "Resource (" + resource.toString() + ") has been released." );
-							}
-						}
-					}
-				}
+				cleanCycle();				
 				
 				// Wait for next cycle:
 				try
@@ -140,6 +101,54 @@ public class GarbageCollector
 			}
 			
 			Plugin.announce( "Garbage collector stopped." );
+		}
+		
+		private void cleanCycle()
+		{
+			cleanCycle( Database.dataCollections );
+		}
+		
+		private void cleanCycle( List<Map<?, ? extends Resource>> dataCollections )
+		{
+			List<Map<?, ? extends Resource>> dataCollectionsCopy;
+			synchronized ( Database.dataCollections )
+			{
+				dataCollectionsCopy = new ArrayList<Map<?, ? extends Resource>>( Database.dataCollections.size() );
+				dataCollectionsCopy.addAll( Database.dataCollections );
+			}
+			for ( Map<?, ? extends Resource> dataCollection : dataCollectionsCopy )
+			{
+				synchronized ( dataCollection )
+				{
+					for ( Iterator<? extends Resource> i = dataCollection.values().iterator(); i.hasNext(); )
+					{
+						Resource resource = i.next();
+						
+						// Check if not used anymore:
+						if ( resource.isOld() )
+						{
+							// Remove from collection:
+							i.remove();
+							
+							// Save if changed:
+							if ( resource.hasChanged == true )
+							{
+								try
+								{
+									resource.save();
+								}
+								catch (Exception e)
+								{
+									Plugin.report( "Unable to save resource " + resource + "." );
+									e.printStackTrace();
+								}
+							}
+							
+							if ( Debug.garbageCollector() ) Debug.debug( "Resource (" + resource.toString() + ") has been released." );
+						}
+					}
+				}
+			}
 		}
 		
 		private void saveCycle()
