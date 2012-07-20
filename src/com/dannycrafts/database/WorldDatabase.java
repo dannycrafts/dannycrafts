@@ -9,11 +9,6 @@ public class WorldDatabase
 	public static <I, R extends Resource> void createResource( Map<I, R> dataCollection, I id, R resource ) throws Exception
 	{
 		resource.create();
-		
-		synchronized ( dataCollection )
-		{
-			dataCollection.put( id, resource );
-		}
 	}
 	
 	public <I, R extends WorldResource> void registerCollection( Map<I, R> collection )
