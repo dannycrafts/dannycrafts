@@ -27,4 +27,16 @@ public class WorldDatabase
 		
 		return resource;
 	}
+
+	public static <K, R extends Resource> void reviveResource( Map<K, R> dataCollection, K id, R resource ) throws Exception
+	{
+		resource.load();
+		resource.acquire();
+		
+		synchronized ( dataCollection )
+		{
+			dataCollection.put( id, resource );
+		}
+	}
+	
 }
