@@ -87,6 +87,19 @@ public class Database
 		}
 	}
 	
+	public static <K, R extends Resource> boolean resourceExists( R resource ) throws Exception
+	{
+		return resource.exists();
+	}
+	
+	public static <K, R extends Resource> boolean resourceIsLoaded( Map<K, R> dataCollection, K id )
+	{
+		synchronized ( dataCollection )
+		{
+			return dataCollection.containsKey( id );
+		}
+	}
+	
 	public static <I, R extends Resource> void spawnResource( Map<I, R> dataCollection, I id, R resource ) throws Exception
 	{
 		resource.create();
