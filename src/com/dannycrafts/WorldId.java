@@ -55,6 +55,12 @@ public class WorldId
 		worlds.add( world.getName() );
 	}
 	
+	@Override
+	public String toString()
+	{
+		return getName();
+	}
+	
 	public static void unloadWorlds()
 	{
 		worlds.clear();
