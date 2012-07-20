@@ -144,11 +144,16 @@ public class GarbageCollector
 		
 		private void saveCycle()
 		{
+			saveCycle( Database.dataCollections );
+		}
+		
+		private void saveCycle( List<Map<?, ? extends Resource>> dataCollections )
+		{
 			List<Map<?, ? extends Resource>> dataCollectionsCopy;
-			synchronized ( Database.dataCollections )
+			synchronized ( dataCollections )
 			{
-				dataCollectionsCopy = new ArrayList<Map<?, ? extends Resource>>( Database.dataCollections.size() );
-				dataCollectionsCopy.addAll( Database.dataCollections );
+				dataCollectionsCopy = new ArrayList<Map<?, ? extends Resource>>( dataCollections.size() );
+				dataCollectionsCopy.addAll( dataCollections );
 			}
 			for ( Map<?, ? extends Resource> dataCollection : dataCollectionsCopy )
 			{
